@@ -1,3 +1,7 @@
+## 1.0.1
+
+* TODO: Correção nos exportes do library.
+
 ## 1.0.0
 
 * TODO: Versão estável com a feature carragar_secoes.
