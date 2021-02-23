@@ -1,7 +1,5 @@
 library carregar_secoes_package;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/presenter/carregar_secoes_presenter.dart';
+export 'src/usecases/entities/resultado_anuncio.dart';
+export 'src/usecases/entities/resultado_secao.dart';
