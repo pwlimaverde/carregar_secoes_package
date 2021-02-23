@@ -2,28 +2,32 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 
 import '../repositories/carregar_secoes_repository.dart';
 import '../usecases/carregar_secoes_usecase.dart';
-import '../usecases/entities/resultado_empresa.dart';
+import '../usecases/entities/resultado_secao.dart';
 
-class CarregarEmpresaPresenter {
-  final Datasource<Stream<ResultadoEmpresa>, NoParams> datasource;
-  final bool? mostrarTempoExecucao;
+class CarregarSecoesPresenter {
+  final Datasource<Stream<List<ResultadoSecao>>, NoParams> datasource;
+  final bool mostrarTempoExecucao;
 
-  CarregarEmpresaPresenter(
-      {required this.datasource, this.mostrarTempoExecucao});
+  CarregarSecoesPresenter({
+    required this.datasource,
+    required this.mostrarTempoExecucao,
+  });
 
-  Future<RetornoSucessoOuErro<Stream<ResultadoEmpresa>>>
-      carregarEmpresa() async {
+  Future<RetornoSucessoOuErro<Stream<List<ResultadoSecao>>>>
+      carregarSecoes() async {
     TempoExecucao tempo = TempoExecucao();
-    tempo.iniciar();
-    final resultado = await CarregarEmpresaUsecase(
-      repositorio: CarregarEmpresaRepositorio(
+    if (mostrarTempoExecucao) {
+      tempo.iniciar();
+    }
+    final resultado = await CarregarSecoesUsecase(
+      repositorio: CarregarSecoesRepositorio(
         datasource: datasource,
       ),
     )(parametros: NoParams());
-    if (mostrarTempoExecucao ?? false) {
+    if (mostrarTempoExecucao) {
       tempo.terminar();
       print(
-          "Tempo de Execução do CarregarEmpresaPresenter: ${tempo.calcularExecucao()}ms");
+          "Tempo de Execução do CarregarSecoesPresenter: ${tempo.calcularExecucao()}ms");
     }
     return resultado;
   }
