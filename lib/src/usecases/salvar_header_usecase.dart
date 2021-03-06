@@ -1,6 +1,7 @@
-import 'package:carregar_secoes_package/src/utilitarios/Parametros.dart';
-import 'package:carregar_secoes_package/src/utilitarios/erros_carregar_secoes.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+
+import '../utilitarios/Parametros.dart';
+import '../utilitarios/erros_carregar_secoes.dart';
 
 class SalvarHeaderUsecase extends UseCase<bool, ParametrosSalvarHeader> {
   final Repositorio<bool, ParametrosSalvarHeader> repositorio;
