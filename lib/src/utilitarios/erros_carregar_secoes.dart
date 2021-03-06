@@ -9,3 +9,13 @@ class ErrorCarregarSecoes implements AppErro {
     return "ErrorCarregarSecoes - $mensagem";
   }
 }
+
+class ErrorSalvarHeader implements AppErro {
+  final String mensagem;
+  ErrorSalvarHeader({required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErrorSalvarHeader - $mensagem";
+  }
+}
