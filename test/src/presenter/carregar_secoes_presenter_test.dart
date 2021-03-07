@@ -1,5 +1,5 @@
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_secoes_package/src/presenter/carregar_secoes_presenter.dart';
-import 'package:carregar_secoes_package/src/usecases/entities/resultado_secao.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
