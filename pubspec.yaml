@@ -1,6 +1,6 @@
 name: carregar_secoes_package
 description: Package de carregamento dos dados das seções à partir do banco de dados.
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/pwlimaverde/carregar_secoes_package
 
 environment:
