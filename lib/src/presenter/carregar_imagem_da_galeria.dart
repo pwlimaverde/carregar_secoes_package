@@ -1,19 +1,20 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class SalvarHeaderPresenter {
+class CarregarImagemDaGaleriaPresenter {
   final Datasource<bool, ParametrosRetornoResultado> datasource;
   final bool mostrarTempoExecucao;
 
-  SalvarHeaderPresenter({
+  CarregarImagemDaGaleriaPresenter({
     required this.datasource,
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> salvarHeader(
+  Future<RetornoSucessoOuErro<bool>> salvarImagem(
       {required ParametrosRetornoResultado parametros}) async {
     final resultado = await RetornoResultadoPresenter<bool>(
       mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Atualizar header das seções",
+      nomeFeature:
+          "Carregar imagem da galeria e atualizar imagem do header das seções",
       datasource: datasource,
     ).retornoResultado(
       parametros: parametros,

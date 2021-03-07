@@ -1,35 +1,38 @@
-import 'package:carregar_secoes_package/src/presenter/salvar_header_presenter.dart';
+import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_secoes_package/src/utilitarios/Parametros.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class FairebaseSalvarHeaderDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosSalvarHeader> {}
+class FairebaseCarregarImagemDoLinkDatasourceMock extends Mock
+    implements Datasource<bool, ParametrosCarregarImagemDoLink> {}
 
 void main() {
-  late Datasource<bool, ParametrosSalvarHeader> datasource;
+  late Datasource<bool, ParametrosCarregarImagemDoLink> datasource;
 
   setUp(() {
-    datasource = FairebaseSalvarHeaderDatasourceMock();
+    datasource = FairebaseCarregarImagemDoLinkDatasourceMock();
   });
 
   test('Deve retornar um sucesso com true', () async {
     when(datasource).calls(#call).thenAnswer((_) => Future.value(true));
-    final result = await SalvarHeaderPresenter(
+    final result = await CarregarImagemDoLinkPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-    ).salvarHeader(
-      parametros: ParametrosSalvarHeader(
-        corHeader: {
-          "r": 60,
-          "g": 60,
-          "b": 60,
-        },
-        doc: 'testedoc',
-        nome: 'novidades',
-        prioridade: 1,
-        user: 'paulo',
+    ).salvarImagem(
+      parametros: ParametrosCarregarImagemDoLink(
+        secao: ResultadoSecao(
+          cor: {
+            "r": 60,
+            "g": 60,
+            "b": 60,
+          },
+          nome: 'novidades',
+          prioridade: 1,
+          img: 'img',
+          scrow: true,
+        ),
+        link: 'link',
       ),
     );
     print("teste result - ${await result.fold(
@@ -49,20 +52,23 @@ void main() {
       'Deve retornar ErrorSalvarHeader com Erro ao salvar os dados do header Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
-    final result = await SalvarHeaderPresenter(
+    final result = await CarregarImagemDoLinkPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-    ).salvarHeader(
-      parametros: ParametrosSalvarHeader(
-        corHeader: {
-          "r": 60,
-          "g": 60,
-          "b": 60,
-        },
-        doc: 'testedoc',
-        nome: 'novidades',
-        prioridade: 1,
-        user: 'paulo',
+    ).salvarImagem(
+      parametros: ParametrosCarregarImagemDoLink(
+        secao: ResultadoSecao(
+          cor: {
+            "r": 60,
+            "g": 60,
+            "b": 60,
+          },
+          nome: 'novidades',
+          prioridade: 1,
+          img: 'img',
+          scrow: true,
+        ),
+        link: 'link',
       ),
     );
     print("teste result - ${await result.fold(
