@@ -5,7 +5,7 @@ class ParametrosSalvarHeader implements ParametrosRetornoResultado {
   final String doc;
   final String nome;
   final int prioridade;
-  final Map corHeader;
+  final Map<String, int> corHeader;
   final String user;
 
   ParametrosSalvarHeader({

@@ -1,3 +1,8 @@
+## 1.2.2
+
+* TODO: Atualizado tipagem dos parametros.
+
+
 ## 1.2.1
 
 * TODO: Atualizado export dos parametros.
