@@ -6,3 +6,4 @@ export 'src/presenter/carregar_imagem_da_galeria.dart';
 export 'src/presenter/carregar_imagem_do_link.dart';
 export 'src/entities/resultado_anuncio.dart';
 export 'src/entities/resultado_secao.dart';
+export 'src/utilitarios/Parametros.dart';

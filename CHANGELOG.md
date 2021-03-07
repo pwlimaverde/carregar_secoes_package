@@ -1,3 +1,7 @@
+## 1.2.1
+
+* TODO: Atualizado export dos parametros.
+
 ## 1.2.0
 
 * TODO: Atualização para retorno_sucesso_ou_erro_package 2.0.2.
