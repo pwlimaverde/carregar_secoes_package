@@ -1,7 +1,7 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 class SalvarHeaderPresenter {
-  final Datasource<bool, ParametrosRetornoResultado> datasource;
+  final Datasource<bool> datasource;
   final bool mostrarTempoExecucao;
 
   SalvarHeaderPresenter({
@@ -9,14 +9,14 @@ class SalvarHeaderPresenter {
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> salvarHeader(
-      {required ParametrosRetornoResultado parametros}) async {
-    final resultado = await RetornoResultadoPresenter<bool>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Atualizar header das seções",
+  Future<ReturnSuccessOrError<bool>> salvarHeader(
+      {required ParametersReturnResult parameters}) async {
+    final resultado = await ReturnResultPresenter<bool>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature: "Atualizar header das seções",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: parametros,
+    )(
+      parameters: parameters,
     );
     return resultado;
   }

@@ -1,7 +1,10 @@
+## 1.2.3
+
+* TODO: Refatoração para return_success_or_error 0.1.7
+
 ## 1.2.2
 
 * TODO: Atualizado tipagem dos parametros.
-
 
 ## 1.2.1
 

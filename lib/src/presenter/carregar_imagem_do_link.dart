@@ -1,7 +1,7 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 class CarregarImagemDoLinkPresenter {
-  final Datasource<bool, ParametrosRetornoResultado> datasource;
+  final Datasource<bool> datasource;
   final bool mostrarTempoExecucao;
 
   CarregarImagemDoLinkPresenter({
@@ -9,15 +9,15 @@ class CarregarImagemDoLinkPresenter {
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> salvarImagem(
-      {required ParametrosRetornoResultado parametros}) async {
-    final resultado = await RetornoResultadoPresenter<bool>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature:
+  Future<ReturnSuccessOrError<bool>> salvarImagem(
+      {required ParametersReturnResult parameters}) async {
+    final resultado = await ReturnResultPresenter<bool>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature:
           "Carregar imagem do link e atualizar imagem do header das seções",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: parametros,
+    )(
+      parameters: parameters,
     );
     return resultado;
   }
