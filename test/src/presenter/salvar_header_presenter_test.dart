@@ -1,14 +1,15 @@
 import 'package:carregar_secoes_package/src/presenter/salvar_header_presenter.dart';
 import 'package:carregar_secoes_package/src/utilitarios/Parametros.dart';
+import 'package:carregar_secoes_package/src/utilitarios/erros_carregar_secoes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 class FairebaseSalvarHeaderDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosSalvarHeader> {}
+    implements Datasource<bool> {}
 
 void main() {
-  late Datasource<bool, ParametrosSalvarHeader> datasource;
+  late Datasource<bool> datasource;
 
   setUp(() {
     datasource = FairebaseSalvarHeaderDatasourceMock();
@@ -20,7 +21,7 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).salvarHeader(
-      parametros: ParametrosSalvarHeader(
+      parameters: ParametrosSalvarHeader(
         corHeader: {
           "r": 60,
           "g": 60,
@@ -30,17 +31,18 @@ void main() {
         nome: 'novidades',
         prioridade: 1,
         user: 'paulo',
+        error: ErrorSalvarHeader(message: "Teste erro"),
       ),
     );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<SucessoRetorno<bool>>());
+    expect(result, isA<SuccessReturn<bool>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         true);
   });
@@ -53,22 +55,22 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).salvarHeader(
-      parametros: ParametrosSalvarHeader(
-        corHeader: {
-          "r": 60,
-          "g": 60,
-          "b": 60,
-        },
-        doc: 'testedoc',
-        nome: 'novidades',
-        prioridade: 1,
-        user: 'paulo',
-      ),
+      parameters: ParametrosSalvarHeader(
+          corHeader: {
+            "r": 60,
+            "g": 60,
+            "b": 60,
+          },
+          doc: 'testedoc',
+          nome: 'novidades',
+          prioridade: 1,
+          user: 'paulo',
+          error: ErrorSalvarHeader(message: "Teste erro")),
     );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<bool>>());
+    expect(result, isA<ErrorReturn<bool>>());
   });
 }

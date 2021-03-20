@@ -1,10 +1,10 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:carregar_secoes_package/src/utilitarios/erros_carregar_secoes.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 import '../../carregar_secoes_package.dart';
 
 class CarregarSecoesPresenter {
-  final Datasource<Stream<List<ResultadoSecao>>, ParametrosRetornoResultado>
-      datasource;
+  final Datasource<Stream<List<ResultadoSecao>>> datasource;
   final bool mostrarTempoExecucao;
 
   CarregarSecoesPresenter({
@@ -12,16 +12,15 @@ class CarregarSecoesPresenter {
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<Stream<List<ResultadoSecao>>>>
+  Future<ReturnSuccessOrError<Stream<List<ResultadoSecao>>>>
       carregarSecoes() async {
-    final resultado =
-        await RetornoResultadoPresenter<Stream<List<ResultadoSecao>>>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Carregar Seções",
+    final resultado = await ReturnResultPresenter<Stream<List<ResultadoSecao>>>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature: "Carregar Seções",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: NoParams(
-        mensagemErro: "Erro ao carregar os dados das Seções",
+    )(
+      parameters: NoParams(
+        error: ErrorCarregarSecoes(message: "Erro ao carregar as seções"),
       ),
     );
     return resultado;
