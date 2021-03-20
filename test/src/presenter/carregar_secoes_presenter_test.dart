@@ -2,14 +2,14 @@ import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_secoes_package/src/presenter/carregar_secoes_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CarregarSecoesDatasourceMock extends Mock
-    implements Datasource<Stream<List<ResultadoSecao>>, NoParams> {}
+    implements Datasource<Stream<List<ResultadoSecao>>> {}
 
 void main() {
-  late Datasource<Stream<List<ResultadoSecao>>, NoParams> datasource;
+  late Datasource<Stream<List<ResultadoSecao>>> datasource;
 
   setUp(() {
     datasource = CarregarSecoesDatasourceMock();
@@ -43,14 +43,14 @@ void main() {
       mostrarTempoExecucao: true,
     ).carregarSecoes();
     print("teste result - ${await result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ).first}");
-    expect(result, isA<SucessoRetorno<Stream<List<ResultadoSecao>>>>());
+    expect(result, isA<SuccessReturn<Stream<List<ResultadoSecao>>>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         isA<Stream<List<ResultadoSecao>>>());
     testeFire.close();
@@ -65,9 +65,9 @@ void main() {
       mostrarTempoExecucao: true,
     ).carregarSecoes();
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<Stream<List<ResultadoSecao>>>>());
+    expect(result, isA<ErrorReturn<Stream<List<ResultadoSecao>>>>());
   });
 }

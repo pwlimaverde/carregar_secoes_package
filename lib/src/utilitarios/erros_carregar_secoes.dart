@@ -1,21 +1,21 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
-class ErrorCarregarSecoes implements AppErro {
-  final String mensagem;
-  ErrorCarregarSecoes({required this.mensagem});
+class ErrorCarregarSecoes implements AppError {
+  String message;
+  ErrorCarregarSecoes({required this.message});
 
   @override
   String toString() {
-    return "ErrorCarregarSecoes - $mensagem";
+    return "ErrorCarregarSecoes - $message";
   }
 }
 
-class ErrorSalvarHeader implements AppErro {
-  final String mensagem;
-  ErrorSalvarHeader({required this.mensagem});
+class ErrorSalvarHeader implements AppError {
+  String message;
+  ErrorSalvarHeader({required this.message});
 
   @override
   String toString() {
-    return "ErrorSalvarHeader - $mensagem";
+    return "ErrorSalvarHeader - $message";
   }
 }

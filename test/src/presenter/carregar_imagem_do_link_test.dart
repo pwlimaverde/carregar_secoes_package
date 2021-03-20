@@ -2,13 +2,13 @@ import 'package:carregar_secoes_package/carregar_secoes_package.dart';
 import 'package:carregar_secoes_package/src/utilitarios/Parametros.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 class FairebaseCarregarImagemDoLinkDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosCarregarImagemDoLink> {}
+    implements Datasource<bool> {}
 
 void main() {
-  late Datasource<bool, ParametrosCarregarImagemDoLink> datasource;
+  late Datasource<bool> datasource;
 
   setUp(() {
     datasource = FairebaseCarregarImagemDoLinkDatasourceMock();
@@ -20,7 +20,7 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).salvarImagem(
-      parametros: ParametrosCarregarImagemDoLink(
+      parameters: ParametrosCarregarImagemDoLink(
         secao: ResultadoSecao(
           cor: {
             "r": 60,
@@ -33,17 +33,18 @@ void main() {
           scrow: true,
         ),
         link: 'link',
+        error: ErrorReturnResult(message: "Teste erro"),
       ),
     );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<SucessoRetorno<bool>>());
+    expect(result, isA<SuccessReturn<bool>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         true);
   });
@@ -56,7 +57,7 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).salvarImagem(
-      parametros: ParametrosCarregarImagemDoLink(
+      parameters: ParametrosCarregarImagemDoLink(
         secao: ResultadoSecao(
           cor: {
             "r": 60,
@@ -69,12 +70,13 @@ void main() {
           scrow: true,
         ),
         link: 'link',
+        error: ErrorReturnResult(message: "Teste erro"),
       ),
     );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<bool>>());
+    expect(result, isA<ErrorReturn<bool>>());
   });
 }
