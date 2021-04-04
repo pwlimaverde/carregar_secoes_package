@@ -1,6 +1,6 @@
-## 1.2.4
+## 1.3.0
 
-* TODO: Inclusão dos anuncios na entindade das seções.
+**BREAKING** Inclusão dos anuncios na entindade das seções.
 
 ## 1.2.3
 
