@@ -1,9 +1,12 @@
+import '../../carregar_secoes_package.dart';
+
 class ResultadoSecao {
   final String nome;
   final String img;
   final int prioridade;
   final bool scrow;
   final Map cor;
+  final List<ResultadoAnuncio> anuncios;
 
   ResultadoSecao({
     required this.nome,
@@ -11,10 +14,11 @@ class ResultadoSecao {
     required this.prioridade,
     required this.scrow,
     required this.cor,
+    required this.anuncios,
   });
 
   @override
   String toString() {
-    return "Dados - $nome, $cor";
+    return "Dados - $nome, $cor, ${anuncios.length} anuncios";
   }
 }
