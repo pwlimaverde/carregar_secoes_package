@@ -1,3 +1,7 @@
+## 1.3.1
+
+**BREAKING** Conversão lista de anuncios para stream de anuncios.
+
 ## 1.3.0
 
 **BREAKING** Inclusão dos anuncios na entindade das seções.

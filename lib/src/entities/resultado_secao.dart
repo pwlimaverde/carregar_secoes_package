@@ -6,7 +6,7 @@ class ResultadoSecao {
   final int prioridade;
   final bool scrow;
   final Map cor;
-  final List<ResultadoAnuncio> anuncios;
+  final Stream<List<ResultadoAnuncio>> anuncios;
 
   ResultadoSecao({
     required this.nome,

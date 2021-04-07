@@ -17,7 +17,24 @@ void main() {
 
   test('Deve retornar um sucesso com Stream<ResultadoSecoes>', () async {
     final testeFire = BehaviorSubject<List<ResultadoSecao>>();
+    final anuncios = BehaviorSubject<List<ResultadoAnuncio>>();
     List<ResultadoSecao> listaSecoes = [];
+    anuncios.add([
+      ResultadoAnuncio(
+        image: "imagem",
+        prioridade: 0,
+        produto: 1,
+        x: 1,
+        y: 1,
+      ),
+      ResultadoAnuncio(
+        image: "imagem2",
+        prioridade: 1,
+        produto: 2,
+        x: 1,
+        y: 1,
+      ),
+    ]);
     listaSecoes.add(
       ResultadoSecao(
         nome: "Promoções",
@@ -25,22 +42,7 @@ void main() {
         prioridade: 2,
         scrow: true,
         cor: {"a": 50, "b": 30, "g": 60, "r": 40},
-        anuncios: [
-          ResultadoAnuncio(
-            image: "imagem",
-            prioridade: 0,
-            produto: 1,
-            x: 1,
-            y: 1,
-          ),
-          ResultadoAnuncio(
-            image: "imagem2",
-            prioridade: 1,
-            produto: 2,
-            x: 1,
-            y: 1,
-          ),
-        ],
+        anuncios: anuncios,
       ),
     );
     listaSecoes.add(
@@ -50,29 +52,7 @@ void main() {
         prioridade: 1,
         scrow: true,
         cor: {"a": 255, "b": 240, "g": 30, "r": 90},
-        anuncios: [
-          ResultadoAnuncio(
-            image: "imagem3",
-            prioridade: 0,
-            produto: 3,
-            x: 1,
-            y: 1,
-          ),
-          ResultadoAnuncio(
-            image: "imagem4",
-            prioridade: 1,
-            produto: 4,
-            x: 1,
-            y: 1,
-          ),
-          ResultadoAnuncio(
-            image: "imagem5",
-            prioridade: 2,
-            produto: 5,
-            x: 2,
-            y: 2,
-          ),
-        ],
+        anuncios: anuncios,
       ),
     );
     testeFire.add(listaSecoes);
@@ -93,6 +73,7 @@ void main() {
         ),
         isA<Stream<List<ResultadoSecao>>>());
     testeFire.close();
+    anuncios.close();
   });
 
   test(
