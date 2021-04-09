@@ -42,7 +42,6 @@ void main() {
         prioridade: 2,
         scrow: true,
         cor: {"a": 50, "b": 30, "g": 60, "r": 40},
-        anuncios: anuncios,
       ),
     );
     listaSecoes.add(
@@ -52,7 +51,6 @@ void main() {
         prioridade: 1,
         scrow: true,
         cor: {"a": 255, "b": 240, "g": 30, "r": 90},
-        anuncios: anuncios,
       ),
     );
     testeFire.add(listaSecoes);
