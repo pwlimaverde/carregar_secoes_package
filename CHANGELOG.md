@@ -1,3 +1,7 @@
+## 1.3.2
+
+**BREAKING** Remoção de anuncios das seções.
+
 ## 1.3.1
 
 **BREAKING** Conversão lista de anuncios para stream de anuncios.
